@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1639685227281245269
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1639685227281245267}
+  - component: {fileID: 1639685227281245268}
+  m_Layer: 0
+  m_Name: Enemy_Selector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1639685227281245267
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639685227281245269}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1639685227281245268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639685227281245269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bad6cb19554b0b408332de8f0ed9d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab_1: {fileID: 8257206287301037501, guid: 04271e414937313458a119ed1de2c61e,
+    type: 3}
+  enemyPrefab_2: {fileID: 7255114661469220145, guid: 9e96569fd64a3f847bf7efe559313bed,
+    type: 3}
+  enemyPrefab_3: {fileID: 7508985284828467962, guid: 487f7a24254e29f4599340d3fc419add,
+    type: 3}
+  enemyPrefab_4: {fileID: 908874321174344339, guid: 453fa79473974cb4eb1ebb9f0a0a6b55,
+    type: 3}
+  enemyPrefab_5: {fileID: 9087289740821469365, guid: d6a08c7b7efcbf2479af3cd57cd84b75,
+    type: 3}
+  enemyPrefab_6: {fileID: 4526851081763802829, guid: 98278565b3ab1f242b91a11f61e33660,
+    type: 3}
+  enemyPrefab_7: {fileID: 2691805634297182409, guid: 3bd678441f72b874490d6fe2089f5369,
+    type: 3}

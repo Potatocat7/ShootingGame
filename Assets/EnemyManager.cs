@@ -29,7 +29,8 @@ public class EnemyManager : MonoBehaviour
         Stop,
         BossStraight,
         BossAround,
-        BossReflection
+        BossReflection,
+        WaveRandam
     }
     public enum EnBullDirTypeKind
     {

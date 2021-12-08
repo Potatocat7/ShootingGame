@@ -21,6 +21,10 @@ public class EnemyCtrl : Machine
     private float _enemyMoveAround = 0;
     private bool _changeMoveDire = false;
     private bool _changeMoveDire_z = false;
+    //ランダム移動用
+    private Vector3 savePos = new Vector3();
+    private Vector3 randamTarget = new Vector3();
+    private int cnt = 0;
 
     public void SetEnemyBulletDirection(Vector3 pos , EnemyManager.EnBullDirTypeKind dirType)
     {
@@ -166,6 +170,21 @@ public class EnemyCtrl : Machine
                 {
                     changePos.z -= enemyState.enemySpeed * Time.deltaTime;
                 }
+                break;
+            case EnemyManager.EnemyMoveTypeKind.WaveRandam:
+                //var pos = transform.position; changePos
+                cnt += 1;
+                if (cnt >=800)
+                {
+                    cnt = 0;
+                    randamTarget.x = UnityEngine.Random.Range(-30.0f, 30.0f);
+                    randamTarget.z = UnityEngine.Random.Range(-55.0f, 55.0f);
+                    randamTarget.y = 0.0f;
+                }
+                savePos += (randamTarget - changePos) * enemyState.enemySpeed * 0.2f * Time.deltaTime;
+                savePos -= savePos * enemyState.enemySpeed * 0.05f * Time.deltaTime;
+                changePos += savePos * Time.deltaTime;
+
                 break;
         }
         this.transform.position = changePos;

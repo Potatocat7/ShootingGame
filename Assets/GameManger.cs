@@ -58,7 +58,25 @@ public class GameManger : MonoBehaviour
     private PlayerCtrl _playerObject;
     private BulletSelector.BulletTypeKind _playerSettingTypeBullet;
 
+    private static GameManger mInstance;
 
+    public static GameManger Instance
+    {
+        get
+        {
+            return mInstance;
+        }
+    }
+    void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        mInstance = this;
+        DontDestroyOnLoad(gameObject);
+    }
     public Vector3 GetPlayerNowPosition()
     {
         return _playerNowPosition;

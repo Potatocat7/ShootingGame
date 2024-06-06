@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyModel : MonoBehaviour
+public class EnemyModel
 {
     public Sprite image;
     public int scorePoint;

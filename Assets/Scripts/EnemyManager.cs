@@ -105,12 +105,14 @@ public class EnemyManager : MonoBehaviour
     }*/
 
     // 敵を生成する(プレハブ経由)
-    void CreateEnemy(int number, Vector3 newEnemyFirstPos, EnemyCtrl enemyPrefab)
-    {
-        _enemyListObject = Instantiate(enemyPrefab, newEnemyFirstPos, Quaternion.identity);//Stateに合わせたプレハブを指定
+    //void CreateEnemy(int number, Vector3 newEnemyFirstPos, EnemyCtrl enemyPrefab)
+    void CreateEnemy(int number, Vector3 newEnemyFirstPos, int enemyNum)
+    { 
+        _enemyListObject = Instantiate(_enemyPrefabObject, newEnemyFirstPos, Quaternion.identity);//Stateに合わせたプレハブを指定
+        //_enemyListObject = Instantiate(enemyPrefab, newEnemyFirstPos, Quaternion.identity);//Stateに合わせたプレハブを指定
         _enemyListObject.parentObject = this;
         _enemyListObject.enemyListnum = number;
-
+        _enemyListObject.Init(enemyNum);
         //ここはプレハブで設定
         //_enemyListObject.enemyHitPoint = State.enemyHitPoint;
         //_enemyListObject.thisSettingTypeBullet = State.typeBullet;
@@ -175,28 +177,35 @@ public class EnemyManager : MonoBehaviour
             switch (enemyRankUp)
             {
                 case 0:
-                    CreateEnemy(_enemyCount, new Vector3(0, 0, 60), _enemySelectorObject.enemyPrefab_1);
+                    CreateEnemy(_enemyCount, new Vector3(0, 0, 60), 1);
+                    //CreateEnemy(_enemyCount, new Vector3(0, 0, 60), _enemySelectorObject.enemyPrefab_1);
                     _enemyCount += 1;
                     break;
                 case 1:
                     switch (_enemyStageUp % 3)
                     {
                         case 0:
-                            CreateEnemy(_enemyCount, new Vector3(0, 0, 60), _enemySelectorObject.enemyPrefab_2);
+                            CreateEnemy(_enemyCount, new Vector3(0, 0, 60), 2);
+                            //CreateEnemy(_enemyCount, new Vector3(0, 0, 60), _enemySelectorObject.enemyPrefab_2);
                             _enemyCount += 1;
                             break;
                         case 1:
-                            CreateEnemy(_enemyCount, new Vector3(20, 0, 60), _enemySelectorObject.enemyPrefab_2);
+                            CreateEnemy(_enemyCount, new Vector3(20, 0, 60), 2);
+                            //CreateEnemy(_enemyCount, new Vector3(20, 0, 60), _enemySelectorObject.enemyPrefab_2);
                             _enemyCount += 1;
-                            CreateEnemy(_enemyCount, new Vector3(-20, 0, 60), _enemySelectorObject.enemyPrefab_2);
+                            CreateEnemy(_enemyCount, new Vector3(-20, 0, 60), 2);
+                            //CreateEnemy(_enemyCount, new Vector3(-20, 0, 60), _enemySelectorObject.enemyPrefab_2);
                             _enemyCount += 1;
                             break;
                         case 2:
-                            CreateEnemy(_enemyCount, new Vector3(0, 0, 60), _enemySelectorObject.enemyPrefab_2);
+                            CreateEnemy(_enemyCount, new Vector3(0, 0, 60), 2);
+                            //CreateEnemy(_enemyCount, new Vector3(0, 0, 60), _enemySelectorObject.enemyPrefab_2);
                             _enemyCount += 1;
-                            CreateEnemy(_enemyCount, new Vector3(20, 0, 60), _enemySelectorObject.enemyPrefab_2);
+                            CreateEnemy(_enemyCount, new Vector3(20, 0, 60), 2);
+                            //CreateEnemy(_enemyCount, new Vector3(20, 0, 60), _enemySelectorObject.enemyPrefab_2);
                             _enemyCount += 1;
-                            CreateEnemy(_enemyCount, new Vector3(-20, 0, 60), _enemySelectorObject.enemyPrefab_2);
+                            CreateEnemy(_enemyCount, new Vector3(-20, 0, 60), 2);
+                            //CreateEnemy(_enemyCount, new Vector3(-20, 0, 60), _enemySelectorObject.enemyPrefab_2);
                             _enemyCount += 1;
                             break;
                     }
@@ -205,7 +214,8 @@ public class EnemyManager : MonoBehaviour
                 case 2:
                     if (_enemyStageUp < 1)
                     {
-                        CreateEnemy(_enemyCount, new Vector3(20 * _enemyPotisionChange, 0, 60), _enemySelectorObject.enemyPrefab_3);
+                        CreateEnemy(_enemyCount, new Vector3(20 * _enemyPotisionChange, 0, 60), 3);
+                        //CreateEnemy(_enemyCount, new Vector3(20 * _enemyPotisionChange, 0, 60), _enemySelectorObject.enemyPrefab_3);
                         _enemyCount += 1;
                         _enemyStartPotisionCnt += 1;
                         switch (_enemyStartPotisionCnt % 3)
@@ -223,11 +233,14 @@ public class EnemyManager : MonoBehaviour
                     }
                     else
                     {
-                        CreateEnemy(_enemyCount, new Vector3(0, 0, 60), _enemySelectorObject.enemyPrefab_3);
+                        CreateEnemy(_enemyCount, new Vector3(0, 0, 60), 3);
+                        //CreateEnemy(_enemyCount, new Vector3(0, 0, 60), _enemySelectorObject.enemyPrefab_3);
                         _enemyCount += 1;
-                        CreateEnemy(_enemyCount, new Vector3(20, 0, 60), _enemySelectorObject.enemyPrefab_3);
+                        CreateEnemy(_enemyCount, new Vector3(20, 0, 60), 3);
+                        //CreateEnemy(_enemyCount, new Vector3(20, 0, 60), _enemySelectorObject.enemyPrefab_3);
                         _enemyCount += 1;
-                        CreateEnemy(_enemyCount, new Vector3(-20, 0, 60), _enemySelectorObject.enemyPrefab_3);
+                        CreateEnemy(_enemyCount, new Vector3(-20, 0, 60), 3);
+                        //CreateEnemy(_enemyCount, new Vector3(-20, 0, 60), _enemySelectorObject.enemyPrefab_3);
                         _enemyCount += 1;
                     }
                     break;
@@ -236,20 +249,25 @@ public class EnemyManager : MonoBehaviour
                     {
                         case 0:
                             if (_enemyPotisionChange == 0) { _enemyPotisionChange = 1; }
-                            CreateEnemy(_enemyCount, new Vector3(-20 * _enemyPotisionChange, 0, 60), _enemySelectorObject.enemyPrefab_4);
+                            CreateEnemy(_enemyCount, new Vector3(-20 * _enemyPotisionChange, 0, 60), 4);
+                            //CreateEnemy(_enemyCount, new Vector3(-20 * _enemyPotisionChange, 0, 60), _enemySelectorObject.enemyPrefab_4);
                             _enemyCount += 1;
                             _enemyPotisionChange *= -1;
                             break;
                         case 1:
-                            CreateEnemy(_enemyCount, new Vector3(20, 0, 60), _enemySelectorObject.enemyPrefab_4);
+                            CreateEnemy(_enemyCount, new Vector3(20, 0, 60), 4);
+                            //CreateEnemy(_enemyCount, new Vector3(20, 0, 60), _enemySelectorObject.enemyPrefab_4);
                             _enemyCount += 1;
-                            CreateEnemy(_enemyCount, new Vector3(-20, 0, 60), _enemySelectorObject.enemyPrefab_4);
+                            CreateEnemy(_enemyCount, new Vector3(-20, 0, 60), 4);
+                            //CreateEnemy(_enemyCount, new Vector3(-20, 0, 60), _enemySelectorObject.enemyPrefab_4);
                             _enemyCount += 1;
                             break;
                         case 2:
-                            CreateEnemy(_enemyCount, new Vector3(20, 0, 60), _enemySelectorObject.enemyPrefab_4);
+                            CreateEnemy(_enemyCount, new Vector3(20, 0, 60), 4);
+                            //CreateEnemy(_enemyCount, new Vector3(20, 0, 60), _enemySelectorObject.enemyPrefab_4);
                             _enemyCount += 1;
-                            CreateEnemy(_enemyCount, new Vector3(-20, 0, 60), _enemySelectorObject.enemyPrefab_4);
+                            CreateEnemy(_enemyCount, new Vector3(-20, 0, 60), 4);
+                            //CreateEnemy(_enemyCount, new Vector3(-20, 0, 60), _enemySelectorObject.enemyPrefab_4);
                             _enemyCount += 1;
                             break;
                     }
@@ -258,20 +276,25 @@ public class EnemyManager : MonoBehaviour
                     switch (_enemyStageUp % 3)
                     {
                         case 0:
-                            CreateEnemy(_enemyCount, new Vector3(-20 * _enemyPotisionChange, 0, 60), _enemySelectorObject.enemyPrefab_5);
+                            CreateEnemy(_enemyCount, new Vector3(-20 * _enemyPotisionChange, 0, 60), 5);
+                            //CreateEnemy(_enemyCount, new Vector3(-20 * _enemyPotisionChange, 0, 60), _enemySelectorObject.enemyPrefab_5);
                             _enemyCount += 1;
                             _enemyPotisionChange *= -1;
                             break;
                         case 1:
-                            CreateEnemy(_enemyCount, new Vector3(20, 0, 60), _enemySelectorObject.enemyPrefab_5);
+                            CreateEnemy(_enemyCount, new Vector3(20, 0, 60), 5);
+                            //CreateEnemy(_enemyCount, new Vector3(20, 0, 60), _enemySelectorObject.enemyPrefab_5);
                             _enemyCount += 1;
-                            CreateEnemy(_enemyCount, new Vector3(-20, 0, 60), _enemySelectorObject.enemyPrefab_5);
+                            CreateEnemy(_enemyCount, new Vector3(-20, 0, 60), 5);
+                            //CreateEnemy(_enemyCount, new Vector3(-20, 0, 60), _enemySelectorObject.enemyPrefab_5);
                             _enemyCount += 1;
                             break;
                         case 2:
-                            CreateEnemy(_enemyCount, new Vector3(20, 0, 60), _enemySelectorObject.enemyPrefab_5);
+                            CreateEnemy(_enemyCount, new Vector3(20, 0, 60), 5);
+                            //CreateEnemy(_enemyCount, new Vector3(20, 0, 60), _enemySelectorObject.enemyPrefab_5);
                             _enemyCount += 1;
-                            CreateEnemy(_enemyCount, new Vector3(-20, 0, 60), _enemySelectorObject.enemyPrefab_5);
+                            CreateEnemy(_enemyCount, new Vector3(-20, 0, 60), 5);
+                            //CreateEnemy(_enemyCount, new Vector3(-20, 0, 60), _enemySelectorObject.enemyPrefab_5);
                             _enemyCount += 1;
                             break;
                     }
@@ -280,20 +303,25 @@ public class EnemyManager : MonoBehaviour
                     switch (_enemyStageUp % 3)
                     {
                         case 0:
-                            CreateEnemy(_enemyCount, new Vector3(-20 * _enemyPotisionChange, 0, 60), _enemySelectorObject.enemyPrefab_6);
+                            CreateEnemy(_enemyCount, new Vector3(-20 * _enemyPotisionChange, 0, 60), 6);
+                            //CreateEnemy(_enemyCount, new Vector3(-20 * _enemyPotisionChange, 0, 60), _enemySelectorObject.enemyPrefab_6);
                             _enemyCount += 1;
                             _enemyPotisionChange *= -1;
                             break;
                         case 1:
-                            CreateEnemy(_enemyCount, new Vector3(20, 0, 60), _enemySelectorObject.enemyPrefab_6);
+                            CreateEnemy(_enemyCount, new Vector3(20, 0, 60), 6);
+                            //CreateEnemy(_enemyCount, new Vector3(20, 0, 60), _enemySelectorObject.enemyPrefab_6);
                             _enemyCount += 1;
-                            CreateEnemy(_enemyCount, new Vector3(-20, 0, 60), _enemySelectorObject.enemyPrefab_6);
+                            CreateEnemy(_enemyCount, new Vector3(-20, 0, 60), 6);
+                            //CreateEnemy(_enemyCount, new Vector3(-20, 0, 60), _enemySelectorObject.enemyPrefab_6);
                             _enemyCount += 1;
                             break;
                         case 2:
-                            CreateEnemy(_enemyCount, new Vector3(20, 0, 60), _enemySelectorObject.enemyPrefab_6);
+                            CreateEnemy(_enemyCount, new Vector3(20, 0, 60), 6);
+                            //CreateEnemy(_enemyCount, new Vector3(20, 0, 60), _enemySelectorObject.enemyPrefab_6);
                             _enemyCount += 1;
-                            CreateEnemy(_enemyCount, new Vector3(-20, 0, 60), _enemySelectorObject.enemyPrefab_6);
+                            CreateEnemy(_enemyCount, new Vector3(-20, 0, 60), 6);
+                            //CreateEnemy(_enemyCount, new Vector3(-20, 0, 60), _enemySelectorObject.enemyPrefab_6);
                             _enemyCount += 1;
                             break;
                     }
@@ -302,7 +330,8 @@ public class EnemyManager : MonoBehaviour
                 case 6:
                     if (_bossFlg == false)
                     {
-                        CreateEnemy(_enemyCount, new Vector3(0, 0, 60), _enemySelectorObject.enemyPrefab_7);
+                        CreateEnemy(_enemyCount, new Vector3(0, 0, 60), 7);
+                        //CreateEnemy(_enemyCount, new Vector3(0, 0, 60), _enemySelectorObject.enemyPrefab_7);
                         _enemyCount += 1;
                         _bossFlg = true;
                     }

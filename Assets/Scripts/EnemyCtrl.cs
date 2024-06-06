@@ -25,6 +25,10 @@ public class EnemyCtrl : Machine
     private Vector3 savePos = new Vector3();
     private Vector3 randamTarget = new Vector3();
     private int cnt = 0;
+    /// <summary>画像</summary>
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    /// <summary>モデル</summary>
+    private EnemyModel enemyModel;
 
     public void SetEnemyBulletDirection(Vector3 pos , EnemyManager.EnBullDirTypeKind dirType)
     {
@@ -47,6 +51,18 @@ public class EnemyCtrl : Machine
                 }
                 break;
         }
+    }
+    public void Init(int num)
+    {
+        enemyModel = new EnemyModel(num);
+        spriteRenderer.sprite = enemyModel.image;
+        enemyState.scorePoint = enemyModel.scorePoint;
+        enemyState.typeBullet = enemyModel.typeBullet;
+        enemyState.bulletInterval = enemyModel.bulletInterval;
+        enemyState.enemySpeed = enemyModel.enemySpeed;
+        enemyState.enemyHitPoint = enemyModel.enemyHitPoint;
+        enemyState.moveType = enemyModel.moveType;
+        enemyState.bulletDirection = enemyModel.bulletDirection;
     }
     public Vector3 GetEnemyBulletDirection()
     {

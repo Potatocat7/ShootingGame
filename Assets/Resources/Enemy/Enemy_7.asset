@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8503f6535f9d0834da085249e341d4b6, type: 3}
   m_Name: Enemy_7
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
+  image: {fileID: 21300070, guid: 030ede5f070c0674e989fe38c6faf41c, type: 3}
   scorePoint: 300
   typeBullet: 1
   bulletInterval: 230

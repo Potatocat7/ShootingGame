@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class GameManger : MonoBehaviour
 {
+    ///TODO:入力処理の修正（Updateから別のものへ）
+    ///TODO:エネミーモデル化
+    ///TODO:アイテム機能を追加
+    ///TODO:アプリ版の操作性について修正
     [SerializeField]
     private PlayerCtrl _playerPrefabObject;
     [SerializeField]
@@ -58,25 +62,25 @@ public class GameManger : MonoBehaviour
     private PlayerCtrl _playerObject;
     private BulletSelector.BulletTypeKind _playerSettingTypeBullet;
 
-    private static GameManger mInstance;
+    //private static GameManger mInstance;
 
-    public static GameManger Instance
-    {
-        get
-        {
-            return mInstance;
-        }
-    }
-    void Awake()
-    {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        mInstance = this;
-        DontDestroyOnLoad(gameObject);
-    }
+    //public static GameManger Instance
+    //{
+    //    get
+    //    {
+    //        return mInstance;
+    //    }
+    //}
+    //void Awake()
+    //{
+    //    if (Instance != null)
+    //    {
+    //        Destroy(gameObject);
+    //        return;
+    //    }
+    //    mInstance = this;
+    //    DontDestroyOnLoad(gameObject);
+    //}
     public Vector3 GetPlayerNowPosition()
     {
         return _playerNowPosition;

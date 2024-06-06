@@ -153,7 +153,6 @@ MonoBehaviour:
   _playerPrefabObject: {fileID: 6220488960402634870, guid: dbee1eedf862f7441833f34d1e9deece,
     type: 3}
   _enemyMangeObject: {fileID: 619988248}
-  _socketMangeObject: {fileID: 317158884}
   _ScoreText: {fileID: 1922743885}
   _FailureText: {fileID: 1721254745}
   _NextText: {fileID: 266358277}

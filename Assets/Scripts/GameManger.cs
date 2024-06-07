@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UniRx;
 
 public class GameManger : MonoBehaviour
 {
@@ -177,6 +178,12 @@ public class GameManger : MonoBehaviour
         _sendClaerScoreFlg = true;
         _nextTextMovingFlg = true;
         _iEnemyBreakCount = 0;
+
+        //Observable.EveryUpdate()
+        //    .Subscribe(_ => {
+
+        //    }).AddTo(gameObject);
+
     }
 
     // Update is called once per frame

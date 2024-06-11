@@ -44,10 +44,10 @@ public class EnemyManager : MonoBehaviour
     private GameManger _gameManagerObject;
     [SerializeField]
     private BreakEffect _breakEffectPrefabObject;
-    [SerializeField]
-    private Enemy_Selector _enemySelectorObject;
+    //[SerializeField]
+    //private Enemy_Selector _enemySelectorObject;
 
-     public int enemyRankUp { get; set; }
+    public int enemyRankUp { get; set; }
 
     private List<EnemyCtrl> _enemyObject = new List<EnemyCtrl>();
     private EnemyCtrl _enemyListObject;
@@ -112,7 +112,8 @@ public class EnemyManager : MonoBehaviour
         //_enemyListObject = Instantiate(enemyPrefab, newEnemyFirstPos, Quaternion.identity);//Stateに合わせたプレハブを指定
         _enemyListObject.parentObject = this;
         _enemyListObject.enemyListnum = number;
-        _enemyListObject.Init(enemyNum);
+        ///TODO:ランクUPを導入するためScriptableObjectをEnemy_1_0のようにランクを追加する
+        _enemyListObject.Init(enemyNum, _enemyStageUp);
         //ここはプレハブで設定
         //_enemyListObject.enemyHitPoint = State.enemyHitPoint;
         //_enemyListObject.thisSettingTypeBullet = State.typeBullet;
@@ -143,7 +144,7 @@ public class EnemyManager : MonoBehaviour
         _graphJson = JsonUtility.FromJson<InputGraphDataJson>(inputString);
         _enemyPotisionChange = 1;
         _enemyCount = 0;
-        StageUpEnemyDataChange(_enemyStageUp);
+        //StageUpEnemyDataChange(_enemyStageUp);
         //_enemyCount = 5;
         //for (int i = 0; i < _enemyCount; i++)
         //{
@@ -159,16 +160,17 @@ public class EnemyManager : MonoBehaviour
     //{
     //    _enemyRankUp += 1;
     //}
-    private void StageUpEnemyDataChange(int stage)
-    {
-        _enemySelectorObject.enemyPrefab_1.enemyState = _graphJson.enemyStateList[0 + 7 * stage];
-        _enemySelectorObject.enemyPrefab_2.enemyState = _graphJson.enemyStateList[1 + 7 * stage];
-        _enemySelectorObject.enemyPrefab_3.enemyState = _graphJson.enemyStateList[2 + 7 * stage];
-        _enemySelectorObject.enemyPrefab_4.enemyState = _graphJson.enemyStateList[3 + 7 * stage];
-        _enemySelectorObject.enemyPrefab_5.enemyState = _graphJson.enemyStateList[4 + 7 * stage];
-        _enemySelectorObject.enemyPrefab_6.enemyState = _graphJson.enemyStateList[5 + 7 * stage];
-        _enemySelectorObject.enemyPrefab_7.enemyState = _graphJson.enemyStateList[6 + 7 * stage];
-    }
+    //private void StageUpEnemyDataChange(int stage)
+    //{
+    //    ///TODO:使わなくなったが７以降のキャラのステータスを設定する必要がある
+    //    _enemySelectorObject.enemyPrefab_1.enemyState = _graphJson.enemyStateList[0 + 7 * stage];
+    //    _enemySelectorObject.enemyPrefab_2.enemyState = _graphJson.enemyStateList[1 + 7 * stage];
+    //    _enemySelectorObject.enemyPrefab_3.enemyState = _graphJson.enemyStateList[2 + 7 * stage];
+    //    _enemySelectorObject.enemyPrefab_4.enemyState = _graphJson.enemyStateList[3 + 7 * stage];
+    //    _enemySelectorObject.enemyPrefab_5.enemyState = _graphJson.enemyStateList[4 + 7 * stage];
+    //    _enemySelectorObject.enemyPrefab_6.enemyState = _graphJson.enemyStateList[5 + 7 * stage];
+    //    _enemySelectorObject.enemyPrefab_7.enemyState = _graphJson.enemyStateList[6 + 7 * stage];
+    //}
     void CreateEnemyUpdate()
     {
         _loopCntEnemyMake += 200.0f * Time.deltaTime;
@@ -352,7 +354,7 @@ public class EnemyManager : MonoBehaviour
                     }
                     else
                     {
-                        StageUpEnemyDataChange(_enemyStageUp);
+                        //StageUpEnemyDataChange(_enemyStageUp);
                     }
                     enemyRankUp = 0;
                 }

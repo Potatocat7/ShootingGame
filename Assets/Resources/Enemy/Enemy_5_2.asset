@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8503f6535f9d0834da085249e341d4b6, type: 3}
-  m_Name: Enemy_4
+  m_Name: Enemy_5_2
   m_EditorClassIdentifier: 
-  image: {fileID: 21300842, guid: 4f3d817ad821bc345b488255f0de8318, type: 3}
-  scorePoint: 30
-  typeBullet: 0
-  bulletInterval: 230
+  image: {fileID: 21300008, guid: 4f3d817ad821bc345b488255f0de8318, type: 3}
+  scorePoint: 350
+  typeBullet: 2
+  bulletInterval: 150
   enemySpeed: 10
-  enemyHitPoint: 1
+  enemyHitPoint: 2
   moveType: 0
-  bulletDirection: 0
+  bulletDirection: 1

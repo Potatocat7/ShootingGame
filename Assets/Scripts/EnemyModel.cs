@@ -13,9 +13,9 @@ public class EnemyModel
     public EnemyManager.EnemyMoveTypeKind moveType;
     public EnemyManager.EnBullDirTypeKind bulletDirection;
 
-    public EnemyModel(int num)
+    public EnemyModel(int num,int rank)
     {
-        EnemyEntity enemyEntity = Resources.Load<EnemyEntity>("Enemy/Enemy_" + num.ToString());
+        EnemyEntity enemyEntity = Resources.Load<EnemyEntity>("Enemy/Enemy_" + num.ToString() + "_" + rank.ToString());
         image = enemyEntity.image;
         scorePoint = enemyEntity.scorePoint;
         typeBullet = enemyEntity.typeBullet;

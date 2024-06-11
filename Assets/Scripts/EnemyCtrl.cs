@@ -52,9 +52,9 @@ public class EnemyCtrl : Machine
                 break;
         }
     }
-    public void Init(int num)
+    public void Init(int num,int rank)
     {
-        enemyModel = new EnemyModel(num);
+        enemyModel = new EnemyModel(num, rank);
         spriteRenderer.sprite = enemyModel.image;
         enemyState.scorePoint = enemyModel.scorePoint;
         enemyState.typeBullet = enemyModel.typeBullet;

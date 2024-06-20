@@ -179,126 +179,122 @@ public class GameManger : MonoBehaviour
         _nextTextMovingFlg = true;
         _iEnemyBreakCount = 0;
 
-        //Observable.EveryUpdate()
-        //    .Subscribe(_ => {
-
-        //    }).AddTo(gameObject);
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //更新
-        if (_playerObject)
-        {
+        Observable.EveryUpdate()
+            .Subscribe(_ =>
+            {
+                //更新
+                if (_playerObject)
+                {
 #if UNITY_IPHONE || UNITY_ANDROID
-            if (Input.touchCount > 0)
-            {
-                switch (Input.GetTouch(0).phase)
+                if (Input.touchCount > 0)
                 {
-                    case TouchPhase.Began:
-                        _playerInputStartPosition = Input.GetTouch(0).position;
-                        break;
+                    switch (Input.GetTouch(0).phase)
+                    {
+                        case TouchPhase.Began:
+                            _playerInputStartPosition = Input.GetTouch(0).position;
+                            break;
 
-                    case TouchPhase.Moved://0.5f
-                        _playerInputMoveNormalized = (Input.GetTouch(0).position - _playerInputStartPosition).normalized;
-                        if (_playerNowPosition.x + _playerSpeed * Time.deltaTime * _playerInputMoveNormalized.x >= _mapLeft &&
-                            _playerNowPosition.x + _playerSpeed * Time.deltaTime * _playerInputMoveNormalized.x <= _mapRight)
-                        {
-                            _playerNowPosition.x += _playerSpeed * Time.deltaTime * _playerInputMoveNormalized.x;
-                            _playerObject.MovePositionSide(_playerSpeed * Time.deltaTime * _playerInputMoveNormalized.x);
-                        }
-                        if (_playerNowPosition.z + _playerSpeed * Time.deltaTime * _playerInputMoveNormalized.y >= _mapUnder &&
-                            _playerNowPosition.z + _playerSpeed * Time.deltaTime * _playerInputMoveNormalized.y <= _mapTop)
-                        {
-                            _playerNowPosition.z += _playerSpeed * Time.deltaTime * _playerInputMoveNormalized.y;
-                            _playerObject.MovePositionVertical(_playerSpeed * Time.deltaTime * _playerInputMoveNormalized.y);
-                        }
-                        break;
+                        case TouchPhase.Moved://0.5f
+                            _playerInputMoveNormalized = (Input.GetTouch(0).position - _playerInputStartPosition).normalized;
+                            if (_playerNowPosition.x + _playerSpeed * Time.deltaTime * _playerInputMoveNormalized.x >= _mapLeft &&
+                                _playerNowPosition.x + _playerSpeed * Time.deltaTime * _playerInputMoveNormalized.x <= _mapRight)
+                            {
+                                _playerNowPosition.x += _playerSpeed * Time.deltaTime * _playerInputMoveNormalized.x;
+                                _playerObject.MovePositionSide(_playerSpeed * Time.deltaTime * _playerInputMoveNormalized.x);
+                            }
+                            if (_playerNowPosition.z + _playerSpeed * Time.deltaTime * _playerInputMoveNormalized.y >= _mapUnder &&
+                                _playerNowPosition.z + _playerSpeed * Time.deltaTime * _playerInputMoveNormalized.y <= _mapTop)
+                            {
+                                _playerNowPosition.z += _playerSpeed * Time.deltaTime * _playerInputMoveNormalized.y;
+                                _playerObject.MovePositionVertical(_playerSpeed * Time.deltaTime * _playerInputMoveNormalized.y);
+                            }
+                            break;
+                    }
                 }
-            }
-            _playerBulletCount += 80 * Time.deltaTime;
-            if (_playerBulletCount >= _playerBulletInterval)
-            {
-                _playerObject.MakeBullet(MachineTypeKind.Player, _playerObject.pBulletProgressPos, _playerSettingTypeBullet);
-                _playerBulletCount = 0;
-            }
+                _playerBulletCount += 80 * Time.deltaTime;
+                if (_playerBulletCount >= _playerBulletInterval)
+                {
+                    _playerObject.MakeBullet(MachineTypeKind.Player, _playerObject.pBulletProgressPos, _playerSettingTypeBullet);
+                    _playerBulletCount = 0;
+                }
 #else
-            //キー入力
-            if (Input.GetKey(KeyCode.A))
-            {
-                if (_playerNowPosition.x + _fLeftMove * Time.deltaTime >= _mapLeft)
-                {
-                    _playerObject.MovePositionSide(_fLeftMove * Time.deltaTime);
-                    _playerNowPosition.x += _fLeftMove * Time.deltaTime;
-                }
-            }
-            else if (Input.GetKey(KeyCode.D))
-            {
-                if (_playerNowPosition.x + _fRightMove * Time.deltaTime <= _mapRight)                    
-                {
-                    _playerObject.MovePositionSide(_fRightMove * Time.deltaTime);
-                    _playerNowPosition.x += _fRightMove * Time.deltaTime;
-                }
-            }
-            if (Input.GetKey(KeyCode.W))
-            {
-                if (_playerNowPosition.z + _fUpMove * Time.deltaTime <= _mapTop)
-                {
-                    _playerObject.MovePositionVertical(_fUpMove * Time.deltaTime);
-                    _playerNowPosition.z += _fUpMove * Time.deltaTime;
-                }
-            }
-            else if (Input.GetKey(KeyCode.S))
-            {
-                if (_playerNowPosition.z + _fDownMove * Time.deltaTime >= _mapUnder)
-                {
-                    _playerObject.MovePositionVertical(_fDownMove * Time.deltaTime);
-                    _playerNowPosition.z += _fDownMove * Time.deltaTime;
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                _playerObject.MakeBullet(MachineTypeKind.Player, _playerObject.pBulletProgressPos, _playerSettingTypeBullet);
-            }
-            //_playerBulletCount += 80 * Time.deltaTime;
-            //if (_playerBulletCount >= _playerBulletInterval)
-            //{
-            //    _playerObject.MakeBullet(MachineTypeKind.Player, _playerObject.pBulletProgressPos, _playerSettingTypeBullet);
-            //    _playerBulletCount = 0;
-            //}
+                    //キー入力
+                    if (Input.GetKey(KeyCode.A))
+                    {
+                        if (_playerNowPosition.x + _fLeftMove * Time.deltaTime >= _mapLeft)
+                        {
+                            _playerObject.MovePositionSide(_fLeftMove * Time.deltaTime);
+                            _playerNowPosition.x += _fLeftMove * Time.deltaTime;
+                        }
+                    }
+                    else if (Input.GetKey(KeyCode.D))
+                    {
+                        if (_playerNowPosition.x + _fRightMove * Time.deltaTime <= _mapRight)
+                        {
+                            _playerObject.MovePositionSide(_fRightMove * Time.deltaTime);
+                            _playerNowPosition.x += _fRightMove * Time.deltaTime;
+                        }
+                    }
+                    if (Input.GetKey(KeyCode.W))
+                    {
+                        if (_playerNowPosition.z + _fUpMove * Time.deltaTime <= _mapTop)
+                        {
+                            _playerObject.MovePositionVertical(_fUpMove * Time.deltaTime);
+                            _playerNowPosition.z += _fUpMove * Time.deltaTime;
+                        }
+                    }
+                    else if (Input.GetKey(KeyCode.S))
+                    {
+                        if (_playerNowPosition.z + _fDownMove * Time.deltaTime >= _mapUnder)
+                        {
+                            _playerObject.MovePositionVertical(_fDownMove * Time.deltaTime);
+                            _playerNowPosition.z += _fDownMove * Time.deltaTime;
+                        }
+                    }
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        _playerObject.MakeBullet(MachineTypeKind.Player, _playerObject.pBulletProgressPos, _playerSettingTypeBullet);
+                    }
+                    //_playerBulletCount += 80 * Time.deltaTime;
+                    //if (_playerBulletCount >= _playerBulletInterval)
+                    //{
+                    //    _playerObject.MakeBullet(MachineTypeKind.Player, _playerObject.pBulletProgressPos, _playerSettingTypeBullet);
+                    //    _playerBulletCount = 0;
+                    //}
 
 #endif
-        }
-        else
-        {
-            if (_sendClaerScoreFlg == true)
-            {
-                _FailureText.enabled = true;
-                //_socketMangeObject.SendScoreByREST(_iScoreTotal);
-                _sendClaerScoreFlg = false;
-            }
+                }
+                else
+                {
+                    if (_sendClaerScoreFlg == true)
+                    {
+                        _FailureText.enabled = true;
+                        //_socketMangeObject.SendScoreByREST(_iScoreTotal);
+                        _sendClaerScoreFlg = false;
+                    }
 
-        }
-        _enemyMangeObject.ChildUpdate(_playerNowPosition);
-        if (_nextTextMovingFlg == false)
-        {
-            if (_enemyMangeObject.enemyRankUp == 6)
-            {
-                _NextText.text = "Danger";
-            }
-            else
-            {
-                _NextText.text = "GoNext";
-            }
-            if (_NextText.transform.localPosition.y >= 900)
-            {
-                _nextTextMovingFlg = true;
-                _nextTextMovePos.y = -900;
-            }
-            _nextTextMovePos.y += 700 * Time.deltaTime;
-            _NextText.transform.localPosition = _nextTextMovePos;
-        }
+                }
+                _enemyMangeObject.ChildUpdate(_playerNowPosition);
+                if (_nextTextMovingFlg == false)
+                {
+                    if (_enemyMangeObject.enemyRankUp == 6)
+                    {
+                        _NextText.text = "Danger";
+                    }
+                    else
+                    {
+                        _NextText.text = "GoNext";
+                    }
+                    if (_NextText.transform.localPosition.y >= 900)
+                    {
+                        _nextTextMovingFlg = true;
+                        _nextTextMovePos.y = -900;
+                    }
+                    _nextTextMovePos.y += 700 * Time.deltaTime;
+                    _NextText.transform.localPosition = _nextTextMovePos;
+                }
+
+            }).AddTo(gameObject);
+
     }
 }
